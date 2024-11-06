@@ -1,0 +1,415 @@
+---
+title: 'MDX-Note'
+date: '2024-11-06'
+lastmod: '2024-11-06'
+tags: ['next-js', 'tailwind', 'markdown', 'note']
+draft: false
+summary: 'Mdx Note'
+authors: ['default']
+layout: PostLayout
+---
+
+Features images served using next/image component. The locally stored images are located in a folder with the following path: /static/images/canada/[filename].jpg
+
+Since we are using mdx, we can create a simple responsive flexbox grid to display our images with a few tailwind css classes.
+
+## flex picture galary
+
+```html
+<div className="-mx-2 flex flex-wrap overflow-hidden xl:-mx-2">
+  <div className="my-1 w-full overflow-hidden px-2 xl:my-1 xl:w-1/2 xl:px-2">
+    ![Maple](/static/images/canada/maple.jpg)
+  </div>
+  <div className="my-1 w-full overflow-hidden px-2 xl:my-1 xl:w-1/2 xl:px-2">
+    ![Lake](/static/images/canada/lake.jpg)
+  </div>
+  <div className="my-1 w-full overflow-hidden px-2 xl:my-1 xl:w-1/2 xl:px-2">
+    ![Mountains](/static/images/canada/mountains.jpg)
+  </div>
+  <div className="my-1 w-full overflow-hidden px-2 xl:my-1 xl:w-1/2 xl:px-2">
+    ![Toronto](/static/images/canada/toronto.jpg)
+  </div>
+</div>
+```
+
+## creadits
+
+```html
+<div>
+  Maple photo by [Guillaume
+  Jaillet](https://unsplash.com/@i_am_g?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText)
+  on
+  [Unsplash](https://unsplash.com/s/photos/canada?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText)
+</div>
+```
+
+
+front-matter
+
+## front-matter
+
+
+```yaml
+_Title_: The Time Machine
+
+_Author_: H. G. Wells
+
+_Subject_: Science Fiction
+
+_Language_: English
+
+_Source_: [Project Gutenberg](https://www.gutenberg.org/ebooks/35)
+```
+
+## markdown
+
+
+common:
+
+Syntax highlighting
+Inline code
+Blockquotes
+Links
+Images
+Lists
+Emphasis
+Headers
+
+
+### foot note
+
+
+Here is a simple footnote[^1]. With some additional text after it.
+
+[^1]: My reference.
+
+
+
+### task lists
+
+- [x] list syntax required (any unordered or ordered list supported)
+- [x] this is a complete item
+- [ ] this is an incomplete item
+
+### tables
+
+view only, we can make table use online tools
+
+```
+| First Header                | Second Header                |
+| --------------------------- | ---------------------------- |
+| Content from cell 1         | Content from cell 2          |
+| Content in the first column | Content in the second column |
+
+```
+
+## Strikethrough
+
+Any word wrapped with two tildes (like `~~this~~`) will appear ~~crossed out~~.
+
+
+## next.js images
+
+Alternatively, since we are using mdx, we can just use the image component directly! Note, that you would have to provide a fixed width and height. The img tag method parses the dimension automatically.
+
+```html
+<Image alt="ocean" src="/static/images/ocean.jpg" width={256} height={128} />
+
+```
+
+## OLS Estimator
+
+use pic
+
+or
+
+search `tailwindBlog deriving-ols-estimator`
+
+## blog-demo
+
+```md
+# pic link
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/timlrx/tailwind-nextjs-starter-blog)
+
+```
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/timlrx/tailwind-nextjs-starter-blog)
+
+
+```md
+# link nonordered list
+
+- [Demo Blog](https://tailwind-nextjs-starter-blog.vercel.app/) - this repo
+- [My personal blog](https://www.timlrx.com) - modified to auto-generate blog posts with dates
+```
+
+- [Demo Blog](https://tailwind-nextjs-starter-blog.vercel.app/) - this repo
+- [My personal blog](https://www.timlrx.com) - modified to auto-generate blog posts with dates
+
+## Frontmatter
+
+```
+title (required)
+date (required)
+tags (required, can be empty array)
+lastmod (optional)
+draft (optional)
+summary (optional)
+images (optional, if none provided defaults to socialBanner in siteMetadata config)
+authors (optional list which should correspond to the file names in `data/authors`. Uses `default` if none is specified)
+layout (optional list which should correspond to the file names in `data/layouts`)
+canonicalUrl (optional, canonical url for the post for SEO)
+```
+
+demo:
+
+```md
+---
+title: 'Introducing Tailwind Nexjs Starter Blog'
+date: '2021-01-12'
+lastmod: '2021-01-18'
+tags: ['next-js', 'tailwind', 'guide']
+draft: false
+summary: 'Looking for a performant, out of the box template, with all the best in web technology to support your blogging needs? Checkout the Tailwind Nextjs Starter Blog template.'
+images: ['/static/images/canada/mountains.jpg', '/static/images/canada/toronto.jpg']
+authors: ['default', 'sparrowhawk']
+layout: PostLayout
+canonicalUrl: https://tailwind-nextjs-starter-blog.vercel.app/blog/introducing-tailwind-nextjs-starter-blog
+---
+```
+
+## licence 
+
+demo:
+
+```md
+[MIT](https://github.com/timlrx/tailwind-nextjs-starter-blog/blob/main/LICENSE) © [Timothy Lin](https://www.timrlx.com)
+```
+
+[MIT](https://github.com/timlrx/tailwind-nextjs-starter-blog/blob/main/LICENSE) © [Timothy Lin](https://www.timrlx.com)
+
+
+
+## Nested Routes
+
+Simplify create multiple folders inside the main /data/blog folder and add your .md/.mdx files to them. You can even create something like /data/blog/nested-route/deeply-nested-route/my-post.md
+
+We use Next.js catch all routes to handle the routing and path creations.
+
+## TOC
+
+```md
+<TOCInline toc={props.toc} exclude="Overview" toHeading={2} />
+<TOCInline toc={props.toc} asDisclosure />
+
+```
+
+## jump within the page
+
+demo:
+
+```md
+See [upgrade guide](#upgrade-guide) below if you are migrating from v0 version of the template.
+
+```
+
+See [upgrade guide](#upgrade-guide) below if you are migrating from v0 version of the template.
+
+
+## layout
+
+Use the layout frontmatter field to specify the template you want to map the markdown post to. Here's how the frontmatter of this post looks like:
+
+You can configure the default layout in the respective page section by modifying the DEFAULT_LAYOUT variable. The DEFAULT_LAYOUT for blog posts page is set to PostLayout.
+
+demo:
+
+```md
+---
+title: 'New features in v1'
+date: '2021-05-26   '
+tags: ['next-js', 'tailwind', 'guide']
+draft: false
+summary: 'Introducing the new layout features - you can map mdx blog content to layout components by configuring the frontmatter field'
+layout: PostSimple
+---
+
+```
+
+## comment
+
+We have also added support for giscus, utterances or disqus. To enable, simply configure siteMetadata.js comments property with the desired provider and settings as specified in the config file.
+
+```js
+comment: {
+    // Select a provider and use the environment variables associated to it
+    // https://vercel.com/docs/environment-variables
+    provider: 'giscus', // supported providers: giscus, utterances, disqus
+    giscusConfig: {
+      // Visit the link below, and follow the steps in the 'configuration' section
+      // https://giscus.app/
+      repo: process.env.NEXT_PUBLIC_GISCUS_REPO,
+      repositoryId: process.env.NEXT_PUBLIC_GISCUS_REPOSITORY_ID,
+      category: process.env.NEXT_PUBLIC_GISCUS_CATEGORY,
+      categoryId: process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID,
+      mapping: 'pathname', // supported options: pathname, url, title
+      reactions: '1', // Emoji reactions: 1 = enable / 0 = disable
+      // Send discussion metadata periodically to the parent window: 1 = enable / 0 = disable
+      metadata: '0',
+      // theme example: light, dark, dark_dimmed, dark_high_contrast
+      // transparent_dark, preferred_color_scheme, custom
+      theme: 'light',
+      // theme when dark mode
+      darkTheme: 'transparent_dark',
+      // If the theme option above is set to 'custom`
+      // please provide a link below to your custom theme css file.
+      // example: https://giscus.app/themes/custom_example.css
+      themeURL: '',
+    },
+    utterancesConfig: {
+      // Visit the link below, and follow the steps in the 'configuration' section
+      // https://utteranc.es/
+      repo: process.env.NEXT_PUBLIC_UTTERANCES_REPO,
+      issueTerm: '', // supported options: pathname, url, title
+      label: '', // label (optional): Comment 💬
+      // theme example: github-light, github-dark, preferred-color-scheme
+      // github-dark-orange, icy-dark, dark-blue, photon-dark, boxy-light
+      theme: '',
+      // theme when dark mode
+      darkTheme: '',
+    },
+    disqus: {
+      // https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+      shortname: process.env.NEXT_PUBLIC_DISQUS_SHORTNAME,
+    },
+  },
+
+```
+
+## Line highlighting and line numbers
+
+
+```js {1, 3-4} showLineNumbers
+var num1, num2, sum
+num1 = prompt('Enter first number')
+num2 = prompt('Enter second number')
+sum = parseInt(num1) + parseInt(num2) // "+" means "add"
+alert('Sum = ' + sum) // "+" means combine into a string
+```
+
+To modify the styles, change the following class selectors in the prism.css file:
+
+
+```css
+.code-highlight {
+  @apply float-left min-w-full;
+}
+
+.code-line {
+  @apply -mx-4 block border-l-4 border-opacity-0 pl-4 pr-4;
+}
+
+.code-line.inserted {
+  @apply bg-green-500 bg-opacity-20;
+}
+
+.code-line.deleted {
+  @apply bg-red-500 bg-opacity-20;
+}
+
+.highlight-line {
+  @apply -mx-4 border-l-4 border-primary-500 bg-gray-700 bg-opacity-50;
+}
+
+.line-number::before {
+  @apply -ml-2 mr-4 inline-block w-4 text-right text-gray-400;
+  content: attr(line);
+}
+
+```
+
+## ref
+
+rehype-citation plugin is added to the xdm processing pipeline in v1.2.1. This allows you to easily format citations and insert bibliography from an existing bibtex or CSL-json file.
+
+```md
+Standard citation [@Nash1950]
+In-text citations e.g. @Nash1951
+Multiple citations [see @Nash1950; @Nash1951, page 50]
+
+**References:**
+
+[^ref]
+
+```
+
+## embed video
+
+```html
+<video controls>
+  <source
+    src="https://github-production-user-asset-6210df.s3.amazonaws.com/28362229/258559849-2124c81f-b99d-4431-839c-347e01a2616c.webm"
+    type="video/webm"
+  />
+</video>
+```
+
+## pliny
+
+To solve this, I have abstracted the logic to a separate repository - Pliny. Pliny provides out of the box Next.js components to enhance static sites:
+
+Choose your preferred service by modifying siteMetadata.js and changing the appropriate fields. For example to change from Umami Analytics to Plausible, we can change the following fields:
+
+- Analytics
+  - Google Analytics
+  - Plausible Analytics
+  - Simple Analytics
+  - Umami Analytics
+  - Posthog
+- Comments
+  - Disqus
+  - Giscus
+  - Utterances
+- Newsletter (uses Next 13 API Routes)
+  - Buttondown
+  - Convertkit
+  - Email Octopus
+  - Klaviyo
+  - Mailchimp
+  - Revue
+- Command palette search with tailwind style sheet
+  - Algolia
+  - Kbar (local search)
+- UI utility components
+  - Bleed
+  - Newsletter / Blog Newsletter
+  - Pre / Code block
+  - Table of Contents
+
+
+## diff
+
+demo:
+
+```diff-js:siteMetadata.js
+analytics: {
+-   umamiAnalytics: {
+-     // We use an env variable for this site to avoid other users cloning our analytics ID
+-     umamiWebsiteId: process.env.NEXT_UMAMI_ID, // e.g. 123e4567-e89b-12d3-a456-426614174000
+-   },
++    plausibleAnalytics: {
++      plausibleDataDomain: '', // e.g. tailwind-nextjs-starter-blog.vercel.app
++    },
+},
+```
+
+## search
+
+algolia
+
+or
+
+kbar
+
+Kbar is a fast, portable, and extensible cmd+k interface. The pliny implementation uses kbar to create a local search dialog box. The component loads a JSON file, default search.json, that was created in the contentlayer build process. Try pressing ⌘-k or ctrl-k to see the search bar in action!
