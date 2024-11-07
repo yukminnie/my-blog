@@ -11,10 +11,7 @@ layout: PostLayout
 
 <TOCInline toc={props.toc} asDisclosure />
 
-
-Features images served using next/image component. The locally stored images are located in a folder with the following path: /static/images/canada/[filename].jpg
-
-Since we are using mdx, we can create a simple responsive flexbox grid to display our images with a few tailwind css classes.
+galary use tailwindcss
 
 ## flex picture galary
 
@@ -46,8 +43,6 @@ Since we are using mdx, we can create a simple responsive flexbox grid to displa
 </div>
 ```
 
-
-front-matter
 
 ## front-matter
 
@@ -205,7 +200,6 @@ We use Next.js catch all routes to handle the routing and path creations.
 ```md
 <TOCInline toc={props.toc} exclude="Overview" toHeading={2} />
 <TOCInline toc={props.toc} asDisclosure />
-
 ```
 
 ## jump within the page
@@ -237,7 +231,6 @@ draft: false
 summary: 'Introducing the new layout features - you can map mdx blog content to layout components by configuring the frontmatter field'
 layout: PostSimple
 ---
-
 ```
 
 ## comment
@@ -287,7 +280,6 @@ comment: {
       shortname: process.env.NEXT_PUBLIC_DISQUS_SHORTNAME,
     },
   },
-
 ```
 
 ## Line highlighting and line numbers
@@ -329,7 +321,6 @@ To modify the styles, change the following class selectors in the prism.css file
   @apply -ml-2 mr-4 inline-block w-4 text-right text-gray-400;
   content: attr(line);
 }
-
 ```
 
 ## ref
@@ -344,7 +335,6 @@ Multiple citations [see @Nash1950; @Nash1951, page 50]
 **References:**
 
 [^ref]
-
 ```
 
 ## embed video
@@ -409,10 +399,6 @@ analytics: {
 
 ## search
 
-algolia
-
-or
-
-kbar
+algolia  or  kbar
 
 Kbar is a fast, portable, and extensible cmd+k interface. The pliny implementation uses kbar to create a local search dialog box. The component loads a JSON file, default search.json, that was created in the contentlayer build process. Try pressing ⌘-k or ctrl-k to see the search bar in action!
