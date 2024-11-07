@@ -10,33 +10,39 @@ images: ['']
 
 ## Introduction
 
-Welcome to the release of Tailwind Nextjs Starter Blog template v2.0. This release is a major refactor of the codebase to support Nextjs App directory and React Server Components. Read on to discover the new features and how to migrate from V1.
+bash demo
 
 <TOCInline toc={props.toc} exclude="Introduction" />
 
 
-## youtube-dl
+## yt-dlp
 
 ```
-youtube-dl -ciw -f 'bestvideo[height=1080]+bestaudio/bestvideo+bestaudio' --merge-output-format mp4 
+yt-dlp -ciw "+res:1080,br" --merge-output-format mp4 
 
-youtube-dl -ciw --playlist-items x-y URL
+yt-dlp -ciw --cookies cookies.txt --cookies-from-browser chrome
 
-mac
----
+yt-dlp -ciw --playlist-items x-y URL 
+
+yt-dlp -ciw -x --audio-format mp3 URL
+
+yt-dlp -ciw --download-archive FILE  
+
+yt-dlp -ciw --write-subs --sub-langs "en,zh" LINK
+
+
+
+mac shell demo:
+
 #!/bin/bash
-
 yt-dlp -ciw -f 'bestvideo[height=1080]+bestaudio/bestvideo+bestaudio' --merge-output-format mp4 $1
----
 
-win
----
+win bat demo: 
+
 @echo off
-
 set a=
 set/p a= paste link:
 start yt-dlp -ciw -f 'bestvideo[height=1080]+bestaudio/bestvideo+bestaudio' --merge-output-format mp4 %a%
----
 ```
 
 ## bilix
@@ -45,12 +51,21 @@ start yt-dlp -ciw -f 'bestvideo[height=1080]+bestaudio/bestvideo+bestaudio' --me
 bilix $1 $2 --subtitle --dm --image
 ```
 
+## BBDown
+
+```
+BBDown --audio-only URL
+BBDown --skip-ai false URL
+BBDown -dd URL
+BBDown -e "hevc" -q "720P 高清" -p ALL  URL 
+BBDown -F <videoTitle>-<bvid> --save-archives-to-file URL 
+```
 ## homebrew
 
 ```
-brew cask install  visual-studio-code mweb picgo  telegram postman docker the-unarchiver anki avidemux iina webstorm pycharm feem baidunetdisk google-chrome downie marginnote sogouinput
+brew cask install visual-studio-code  picgo  telegram postman docker the-unarchiver anki  iina webstorm pycharm feem  google-chrome downie
 
-brew install nodejs npm ffmpeg youtube-dl
+brew install nodejs npm ffmpeg 
 ```
 
 ## pip
@@ -62,10 +77,10 @@ pip install requests beautifulsoup4 selenium scripy chromedriver
 ## choco
 
 ```
-choco install git nodejs youtube-dl aria2 greenshot ffmpeg atom 7zip postman potplayer bitvise-ssh-client vscode winscp pycharm webstorm docker mysql picgo avidemux  -y
+choco install git nodejs  aria2 greenshot ffmpeg  7zip postman potplayer bitvise-ssh-client vscode winscp pycharm webstorm docker mysql picgo   -y
 ```
 
-## aria2
+## launch aria2 on macos
 
 ```
 nohup aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all &
@@ -75,58 +90,71 @@ nohup aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all &
 
 ```
 # win
-copy
----
+
+copy:
+
 @echo off
 mkdir newfiles
-for %%a in ("*.flv") do ffmpeg -i "%%a" -threads 2 -f mp4 -codec copy -y "newfiles\%%~na.mp4"
+for %%a in ("*.flv") do ffmpeg -i "%%a"  -codec copy -y "newfiles\%%~na.mp4"
 pause
 
-tran
----
-for %%a in ("*.mp4") do ffmpeg -i "%%a" -threads 2 -crf 22 -c:a copy  "newfiles\%%~na.mp4"
+trans:
 
-toMp3
----
-ffmpeg -i input.mp4 -f mp3 -vn output.mp3
-ffmpeg -i input.flac -ab 320k -map_metadata 0 -id3v2_version 3 output.mp3
+for %%a in ("*.mp4") do ffmpeg -i "%%a" -vcodec h264_qsv -crf 22 -c:a copy  "newfiles\%%~na.mp4"
+
+toMp3:
+
+ffmpeg -i input.mp4 -vn output.aac
+ffmpeg -i input.aac -acodec libmp3lame -ab 320k output.mp3
 
 # mac
-copy
----
+
+copy:
+
 for loop in *.flv ; ffmpeg -i "$loop" -codec copy "newfile/${loop%.flv}.mp4"
 
-tran
----
+trans:
+
 ffmpeg -i $1 -c:v h264_videotoolbox $1.mp4
 ```
 
-## 安全性与隐私
+## loop
+
+```
+links in file:
+
+for link in $(cat ./down.txt); do  BBDown -e "hevc" -q "720P 高清" "$link"; done
+
+match string start:
+for file in web*.txt; do mv "$file" "${file#web}"; done
+
+string split:
+for url in $(cat chat_list.txt); do chat_downloader --cookies cookies.txt "$url" --output "${url: -11}.json" | tee -a "${url: -11}.txt"; done
+
+```
+
+## mac安全性与隐私
 
 ```
 sudo spctl --master-disable
-```
 
-## csr
-
-```
 csrutil disable
 ```
 
-## 格式化
+## mac磁盘格式化
 
 ```
 diskutil partitiondisk 盘名 JHFS+ newdisk 100% 
 ```
 
-## 显示与隐藏
+## mac文件显示与隐藏
 
 ```
 defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder
 defaults write com.apple.finder AppleShowAllFiles -boolean false ; killall Finder
 ```
 
-## powershell 此系统上禁止运行脚本
+## powershell此系统上禁止运行脚本
 
 ```
 set-executionpolicy remotesigned
@@ -135,28 +163,36 @@ set-executionpolicy remotesigned
 ## setnet
 
 ```
-win
+win:
+
 netsh interface ip set address name="NET" source=static addr=192.168.11.143 mask=255.255.255.0 gateway=192.168.11.213
 netsh interface ip set dns name="NET" source=static addr=192.168.11.213
 
-mac
+mac:
+
 networksetup -setmanual "Wi-Fi" 192.168.11.220 255.255.252.0 192.168.11.213; networksetup -setdnsservers Wi-Fi 192.168.11.213
 ```
 
 ## backnet
+
 ```
-win
+win:
+
 netsh interface ip set address name="NET" source=dhcp
 netsh interface ip set dns name="NET" source=dhcp
 
-mac
+mac:
+
 networksetup -setdhcp "Wi-Fi"; networksetup -setdnsservers Wi-Fi 192.168.11.1
 ```
 
-## net reset
-netsh winsock reset
+## windows net reset
 
-## fu
+```
+netsh winsock reset
+```
+
+## front-demo
 
 ```
 #!/bin/bash
@@ -197,7 +233,7 @@ code .
 
 ```
 
-## pu
+## spider-demo
 
 ```
 #!/bin/bash
@@ -221,8 +257,16 @@ echo "# coding:utf-8" > $2.py
 code .
 ```
 
-## kms
-irm https://massgrave.dev/get | iex 
+## activated
 
-## dd
+win:
+
+irm https://get.activated.win | iex
+
+idm:
+
+irm massgrave.dev/ias | iex
+
+## linux-dd write disk
+
 dd if=/tmp/upload/openwrt.img of=/dev/sda
